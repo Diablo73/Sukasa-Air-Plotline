@@ -1,0 +1,9 @@
+spring:
+  application:
+    name: sukasa-air-plotline-application
+    description: sukasa-air-plotline-application
+    version: 1.0-SNAPSHOT
+
+server:
+  port: 8080
+  shutdown: graceful
