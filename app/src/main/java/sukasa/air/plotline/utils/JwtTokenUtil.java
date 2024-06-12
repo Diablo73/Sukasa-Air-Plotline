@@ -1,8 +1,6 @@
 package sukasa.air.plotline.utils;
 
-import io.jsonwebtoken.Claims;
-import io.jsonwebtoken.Jwts;
-import io.jsonwebtoken.SignatureAlgorithm;
+import io.jsonwebtoken.*;
 import io.jsonwebtoken.security.Keys;
 
 import javax.crypto.SecretKey;
@@ -15,7 +13,7 @@ public class JwtTokenUtil {
 	public static String generateToken(String subject) {
 		return Jwts.builder()
 				.setSubject(subject)
-				.setExpiration(new Date(System.currentTimeMillis() + 900000)) // 1 hour expiry
+				.setExpiration(new Date(System.currentTimeMillis() + 3000000))
 				.signWith(key)
 				.compact();
 	}
@@ -30,6 +28,21 @@ public class JwtTokenUtil {
 			return claims.getSubject().equals(subject);
 		} catch (Exception e) {
 			return false;
+		}
+	}
+
+	public static boolean isTokenExpired(String token) {
+		try {
+			Claims claims = Jwts.parserBuilder()
+					.setSigningKey(key)
+					.build()
+					.parseClaimsJws(token)
+					.getBody();
+
+			Date expiration = claims.getExpiration();
+			return expiration != null && expiration.before(new Date());
+		} catch (ExpiredJwtException | MalformedJwtException e) {
+			return true;
 		}
 	}
 
