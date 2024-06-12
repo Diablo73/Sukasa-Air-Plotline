@@ -3,7 +3,22 @@ spring:
     name: sukasa-air-plotline-application
     description: sukasa-air-plotline-application
     version: 1.0-SNAPSHOT
+  profiles:
+    active: dev
 
 server:
   port: 8080
+  servlet:
+    context-path: /sukasa
   shutdown: graceful
+
+logging:
+  level:
+    org:
+      springframework:
+        web: DEBUG
+
+mongodb:
+  uri: mongodb+srv://user0001:CU8MZgdHfHzthk7E@cluster0.nwsacep.mongodb.net/sukasa_air_reservation
+  database: sukasa_air_reservation
+  admin: admin@sukasaair.com
