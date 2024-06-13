@@ -4,7 +4,7 @@ import lombok.Data;
 import sukasa.air.plotline.enums.StatusEnum;
 
 @Data
-public class ReservationResponse extends SeatModificationResponse {
+public class ReservationResponse extends StatusResponse {
 
 	public ReservationResponse(StatusEnum statusEnum) {
 		super(statusEnum);

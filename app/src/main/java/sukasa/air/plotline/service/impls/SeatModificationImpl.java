@@ -5,6 +5,7 @@ import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.stereotype.Service;
 import sukasa.air.plotline.constants.APIPathConstants;
 import sukasa.air.plotline.enums.StatusEnum;
+import sukasa.air.plotline.exception.InvalidParamException;
 import sukasa.air.plotline.models.mongoDbDocs.ReservationDoc;
 import sukasa.air.plotline.models.requests.ReservationRequest;
 import sukasa.air.plotline.models.responses.ReservationResponse;
@@ -57,7 +58,10 @@ public class SeatModificationImpl implements SeatModificationService {
 
 					@Override
 					public ReservationResponse composeFailResultInfo(Exception e) {
-						return null;
+						InvalidParamException invalidParamException = (InvalidParamException) e;
+						reservationResponse.setStatusEnum(invalidParamException.getStatusEnum());
+						reservationResponse.setMessage(invalidParamException.getMessage());
+						return reservationResponse;
 					}
 				});
 	}

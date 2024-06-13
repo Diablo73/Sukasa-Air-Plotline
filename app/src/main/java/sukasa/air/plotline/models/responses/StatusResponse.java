@@ -4,12 +4,12 @@ import lombok.Data;
 import sukasa.air.plotline.enums.StatusEnum;
 
 @Data
-public class SeatModificationResponse {
+public class StatusResponse {
 
 	private int statusCode;
 	private String message;
 
-	public SeatModificationResponse(StatusEnum statusEnum) {
+	public StatusResponse(StatusEnum statusEnum) {
 		statusCode = statusEnum.getStatusCode();
 		message = statusEnum.getMessage();
 	}
