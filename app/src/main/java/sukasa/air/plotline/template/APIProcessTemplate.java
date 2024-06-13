@@ -6,6 +6,6 @@ public interface APIProcessTemplate<RESPONSE> {
 
 	RESPONSE invoke();
 
-	RESPONSE composeFailResultInfo();
+	RESPONSE composeFailResultInfo(Exception e);
 
 }

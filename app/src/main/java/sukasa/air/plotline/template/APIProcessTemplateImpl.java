@@ -20,7 +20,7 @@ public class APIProcessTemplateImpl {
 
 		} catch (Exception e) {
 			log.info("ERROR : " + e.getMessage());
-			response = processCallback.composeFailResultInfo();
+			response = processCallback.composeFailResultInfo(e);
 		} finally {
 
 		}

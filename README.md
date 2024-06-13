@@ -37,7 +37,7 @@ Returns a welcome message with the server start time.
 Welcome to the SukasaAirPlotlineApplication!!!
 Started Successfully at Time : {current_time}
 ```
-### 1. Login Token
+### 2. Login Token
 #### HTTP Method    -    `POST`
 #### Description
 Returns a jwt access token (60 min expiry) for an email
