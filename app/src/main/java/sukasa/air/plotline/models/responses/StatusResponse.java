@@ -6,7 +6,7 @@ import sukasa.air.plotline.enums.StatusEnum;
 @Data
 public class StatusResponse {
 
-	private int statusCode;
+	private String statusCode;
 	private String message;
 
 	public StatusResponse(StatusEnum statusEnum) {
