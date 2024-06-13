@@ -1,6 +1,5 @@
 package sukasa.air.plotline.service.impls;
 
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 import sukasa.air.plotline.constants.APIPathConstants;
 import sukasa.air.plotline.models.requests.LoginRequest;
@@ -8,6 +7,7 @@ import sukasa.air.plotline.models.responses.LoginResponse;
 import sukasa.air.plotline.service.LoginService;
 import sukasa.air.plotline.template.APIProcessTemplate;
 import sukasa.air.plotline.template.APIProcessTemplateImpl;
+import sukasa.air.plotline.utils.AssertUtil;
 import sukasa.air.plotline.utils.JwtTokenUtil;
 
 @Service
@@ -21,7 +21,7 @@ public class LoginServiceImpl implements LoginService {
 
 					@Override
 					public void validate() {
-						assert StringUtils.isNotBlank(loginRequest.getEmail());
+						AssertUtil.notEmpty(loginRequest.getEmail(), "Email cannot be empty");
 					}
 
 					@Override
@@ -32,7 +32,7 @@ public class LoginServiceImpl implements LoginService {
 					}
 
 					@Override
-					public LoginResponse composeFailResultInfo() {
+					public LoginResponse composeFailResultInfo(Exception e) {
 						return null;
 					}
 				});

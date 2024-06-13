@@ -11,4 +11,10 @@ public class AssertUtil {
 			throw new InvalidParamException(StatusEnum.INVALID_PARAM, message);
 		}
 	}
+
+	public static void assertTrue(boolean b, String message) {
+		if (!b) {
+			throw new InvalidParamException(StatusEnum.INVALID_PARAM, message);
+		}
+	}
 }

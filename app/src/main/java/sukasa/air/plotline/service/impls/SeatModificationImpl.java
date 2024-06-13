@@ -1,23 +1,19 @@
 package sukasa.air.plotline.service.impls;
 
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.stereotype.Service;
 import sukasa.air.plotline.constants.APIPathConstants;
 import sukasa.air.plotline.enums.StatusEnum;
 import sukasa.air.plotline.models.mongoDbDocs.ReservationDoc;
-import sukasa.air.plotline.models.requests.LoginRequest;
 import sukasa.air.plotline.models.requests.ReservationRequest;
-import sukasa.air.plotline.models.responses.LoginResponse;
 import sukasa.air.plotline.models.responses.ReservationResponse;
 import sukasa.air.plotline.models.responses.ResetResponse;
 import sukasa.air.plotline.repository.ReservationRepository;
-import sukasa.air.plotline.service.LoginService;
 import sukasa.air.plotline.service.SeatModificationService;
 import sukasa.air.plotline.template.APIProcessTemplate;
 import sukasa.air.plotline.template.APIProcessTemplateImpl;
-import sukasa.air.plotline.utils.JwtTokenUtil;
+import sukasa.air.plotline.utils.AssertUtil;
 
 @Service
 public class SeatModificationImpl implements SeatModificationService {
@@ -36,10 +32,10 @@ public class SeatModificationImpl implements SeatModificationService {
 
 					@Override
 					public void validate() {
-						assert reservationRequest.getSeatNumber() > 0 && reservationRequest.getSeatNumber() <= 300;
-						assert StringUtils.isNotBlank(reservationRequest.getPassengerPhone());
-						assert StringUtils.isNotBlank(reservationRequest.getPassengerName());
-						assert reservationRequest.getSeatNumber() > 0 && reservationRequest.getSeatNumber() <= 100;
+						AssertUtil.assertTrue(reservationRequest.getSeatNumber() > 0 && reservationRequest.getSeatNumber() <= 300, "SeatNumber must be between 1-300");
+						AssertUtil.notEmpty(reservationRequest.getPassengerPhone(), "PassengerPhone cannot be empty");
+						AssertUtil.notEmpty(reservationRequest.getPassengerName(), "PassengerName cannot be empty");
+						AssertUtil.assertTrue(reservationRequest.getPassengerAge() > 0 && reservationRequest.getPassengerAge() <= 100, "PassengerAge must be between 1-100");
 					}
 
 					@Override
@@ -60,7 +56,7 @@ public class SeatModificationImpl implements SeatModificationService {
 					}
 
 					@Override
-					public ReservationResponse composeFailResultInfo() {
+					public ReservationResponse composeFailResultInfo(Exception e) {
 						return null;
 					}
 				});
@@ -85,7 +81,7 @@ public class SeatModificationImpl implements SeatModificationService {
 					}
 
 					@Override
-					public ResetResponse composeFailResultInfo() {
+					public ResetResponse composeFailResultInfo(Exception e) {
 						return null;
 					}
 				});
