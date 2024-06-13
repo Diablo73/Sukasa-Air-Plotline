@@ -57,8 +57,9 @@ Returns a jwt access token (60 min expiry) for an email
 ### 3. Reserve Seat
 #### HTTP Method    -    `POST`
 #### Description
-Confirms and saves
+Confirms and saves seat in the plane
 #### URL    -    `/seat/reserve`
+#### Authorization    -    Bearer Token (API #2 Login Token)
 #### Request Body Example -
 ```json
 {
@@ -80,5 +81,20 @@ Confirms and saves
 {
     "statusCode":  11,
     "message":  "SEAT_UNAVAILABLE"
+}
+```
+### 4. Reset Seat
+#### HTTP Method    -    `GET`
+#### Description
+Resets **ALL** the seats
+#### URL    -    `/seat/reset`
+#### Authorization    -    Bearer Token (API #2 Login Token)
+#### Authentication    -    Admin access required
+#### Request Body Example - No Body Required
+#### Response Body Example -
+```json
+{
+    "statusCode":  00,
+    "message":  "RESET_SUCCESSFUL"
 }
 ```
