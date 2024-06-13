@@ -13,7 +13,7 @@ public class JwtTokenUtil {
 	public static String generateToken(String subject) {
 		return Jwts.builder()
 				.setSubject(subject)
-				.setExpiration(new Date(System.currentTimeMillis() + 3000000))
+				.setExpiration(new Date(System.currentTimeMillis() + 3600000))
 				.signWith(key)
 				.compact();
 	}

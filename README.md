@@ -6,7 +6,6 @@
     - JDK 17. You can download it online or from Intellij.
 2. **Maven**
     - Apache Maven 3.6.3 or higher. You can download it from [Maven's website](https://maven.apache.org/download.cgi).
-
 ## Building the Project
 1. Open your terminal and navigate to the root directory of the Spring Boot project:
    ```bash
@@ -22,4 +21,37 @@
    java -jar target/sukasa-air-plotline-1.0-SNAPSHOT.jar
 5. To verify if the server is running, open a web browser and navigate to:
    `http://localhost:8080/sukasa/`
+
+# API Documentation
+## Base URL
+`http://localhost:8080/sukasa`
+## Endpoints
+### 1. Get Default Message
+#### HTTP Method    -    `GET`
+#### Description
+Returns a welcome message with the server start time.
+#### URL    -    `/`
+#### Request Body - No Body Required
+#### Response Body
+```html
+Welcome to the SukasaAirPlotlineApplication!!!
+Started Successfully at Time : {current_time}
+```
+### 1. Login Token
+#### HTTP Method    -    `POST`
+#### Description
+Returns a jwt access token (60 min expiry) for an email
+#### URL    -    `/login`
+#### Request Body Example -
+```json
+{
+	"email": "asdfg@gmail.com"    // String - required
+}
+```
+#### Response Body Example -
+```json
+{
+	"token": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkBzdWt"    // String
+}
+```
 
