@@ -33,10 +33,10 @@ public class SeatModificationImpl implements SeatModificationService {
 
 					@Override
 					public void validate() {
-						AssertUtil.assertTrue(reservationRequest.getSeatNumber() > 0 && reservationRequest.getSeatNumber() <= 300, "SeatNumber must be between 1-300");
-						AssertUtil.notEmpty(reservationRequest.getPassengerPhone(), "PassengerPhone cannot be empty");
-						AssertUtil.notEmpty(reservationRequest.getPassengerName(), "PassengerName cannot be empty");
-						AssertUtil.assertTrue(reservationRequest.getPassengerAge() > 0 && reservationRequest.getPassengerAge() <= 100, "PassengerAge must be between 1-100");
+						AssertUtil.assertTrue(reservationRequest.getSeatNumber() > 0 && reservationRequest.getSeatNumber() <= 300, "seatNumber must be between 1-300");
+						AssertUtil.notEmpty(reservationRequest.getPassengerPhone(), "passengerPhone cannot be empty");
+						AssertUtil.notEmpty(reservationRequest.getPassengerName(), "passengerName cannot be empty");
+						AssertUtil.assertTrue(reservationRequest.getPassengerAge() > 0 && reservationRequest.getPassengerAge() <= 100, "passengerAge must be between 1-100");
 					}
 
 					@Override

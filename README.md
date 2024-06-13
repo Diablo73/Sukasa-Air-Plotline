@@ -54,4 +54,31 @@ Returns a jwt access token (60 min expiry) for an email
 	"token": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkBzdWt"    // String
 }
 ```
-
+### 3. Reserve Seat
+#### HTTP Method    -    `POST`
+#### Description
+Confirms and saves
+#### URL    -    `/seat/reserve`
+#### Request Body Example -
+```json
+{
+	"seatNumber":  182,                 // Integer - required (1 - 300)
+	"passengerPhone":  "9876543210",    // String - required
+	"passengerName":  "John",           // String - required
+	"passengerAge":  25                 // Integer - required (1 - 100)
+}
+```
+#### Response Body Success Example -
+```json
+{
+    "statusCode":  10,
+    "message":  "SEAT_RESERVED"
+}
+```
+#### Response Body Failure Example -
+```json
+{
+    "statusCode":  11,
+    "message":  "SEAT_UNAVAILABLE"
+}
+```
