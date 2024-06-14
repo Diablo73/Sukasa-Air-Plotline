@@ -19,7 +19,10 @@
 4. Alternatively, you can run the packaged JAR file directly:
    ```bash
    java -jar target/sukasa-air-plotline-1.0-SNAPSHOT.jar
-5. To verify if the server is running, open a web browser and navigate to:
+5. You can add mongodb parameters as per requirement
+   ```bash
+   java -DMONGODB_URI=_____ -DMONGODB_DATABASE=_____ -DMONGODB_ADMIN_EMAIL=_____ -jar target/sukasa-air-plotline-1.0-SNAPSHOT.jar
+6. To verify if the server is running, open a web browser and navigate to:
    `http://localhost:8080/sukasa/`
 
 # API Documentation
