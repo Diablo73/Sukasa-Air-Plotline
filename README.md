@@ -45,15 +45,22 @@ Returns a jwt access token (60 min expiry) for an email
 #### Request Body Example -
 ```json
 {
-	"email": "asdfg@gmail.com"    // String - required
+	"email": "asdfg@gmail.com"
 }
 ```
+| Field | Type   | Required |
+|-------|--------|----------|
+| email | String | YES      |
+
 #### Response Body Example -
 ```json
 {
-	"token": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkBzdWt"    // String
+	"token": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkBzdWt"
 }
 ```
+| Field | Type   |
+|-------|--------|
+| token | String |
 ### 3. Reserve Seat
 #### HTTP Method    -    `POST`
 #### Description
@@ -63,19 +70,29 @@ Confirms and saves seat in the plane
 #### Request Body Example -
 ```json
 {
-	"seatNumber":  182,                 // Integer - required (1 - 300)
-	"passengerPhone":  "9876543210",    // String - required
-	"passengerName":  "John",           // String - required
-	"passengerAge":  25                 // Integer - required (1 - 100)
+	"seatNumber":  182,
+	"passengerPhone":  "9876543210",
+	"passengerName":  "John",
+	"passengerAge":  25
 }
 ```
+| Field          | Type    | Required |
+|----------------|---------|----------|
+| seatNumber     | Integer | YES      |
+| passengerPhone | String  | YES      |
+| passengerName  | String  | YES      |
+| passengerAge   | Integer | YES      |
 #### Response Body Success Example -
 ```json
 {
-    "statusCode":  10,
+    "statusCode":  "10",
     "message":  "SEAT_RESERVED"
 }
 ```
+| Field      | Type   |
+|------------|--------|
+| statusCode | String |
+| message    | String |
 #### Response Body Failure Example -
 ```json
 {
@@ -83,6 +100,10 @@ Confirms and saves seat in the plane
     "message":  "SEAT_UNAVAILABLE"
 }
 ```
+| Field      | Type   |
+|------------|--------|
+| statusCode | String |
+| message    | String |
 ### 4. Reset Seat
 #### HTTP Method    -    `GET`
 #### Description
@@ -94,7 +115,11 @@ Resets **ALL** the seats
 #### Response Body Example -
 ```json
 {
-    "statusCode":  00,
+    "statusCode":  "00",
     "message":  "RESET_SUCCESSFUL"
 }
 ```
+| Field      | Type   |
+|------------|--------|
+| statusCode | String |
+| message    | String |
