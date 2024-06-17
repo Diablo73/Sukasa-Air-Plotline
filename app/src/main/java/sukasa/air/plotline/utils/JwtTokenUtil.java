@@ -41,7 +41,7 @@ public class JwtTokenUtil {
 
 			Date expiration = claims.getExpiration();
 			return expiration != null && expiration.before(new Date());
-		} catch (ExpiredJwtException | MalformedJwtException e) {
+		} catch (Exception e) {
 			return true;
 		}
 	}

@@ -1,5 +1,6 @@
 package sukasa.air.plotline.service.impls;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.stereotype.Service;
@@ -15,7 +16,9 @@ import sukasa.air.plotline.service.SeatModificationService;
 import sukasa.air.plotline.template.APIProcessTemplate;
 import sukasa.air.plotline.template.APIProcessTemplateImpl;
 import sukasa.air.plotline.utils.AssertUtil;
+import sukasa.air.plotline.utils.MapperUtil;
 
+@Slf4j
 @Service
 public class SeatModificationServiceImpl implements SeatModificationService {
 
@@ -48,6 +51,7 @@ public class SeatModificationServiceImpl implements SeatModificationService {
 								.passengerAge(reservationRequest.getPassengerAge())
 								.build();
 
+						log.info("BOOKING initiated for : " + MapperUtil.convertObject2JsonString(reservationDoc));
 						if (reservationRepository.findById(reservationDoc.getSeatNumber()).isEmpty()) {
 							reservationRepository.insert(reservationDoc);
 						} else {
