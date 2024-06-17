@@ -2,6 +2,8 @@ package sukasa.air.plotline.service.impls;
 
 import org.springframework.stereotype.Service;
 import sukasa.air.plotline.constants.APIPathConstants;
+import sukasa.air.plotline.enums.StatusEnum;
+import sukasa.air.plotline.exception.InvalidParamException;
 import sukasa.air.plotline.models.requests.LoginRequest;
 import sukasa.air.plotline.models.responses.LoginResponse;
 import sukasa.air.plotline.service.LoginService;
@@ -15,7 +17,7 @@ public class LoginServiceImpl implements LoginService {
 
     @Override
     public LoginResponse initiateLogin(LoginRequest loginRequest) {
-		final LoginResponse loginResponse = new LoginResponse();
+		final LoginResponse loginResponse = new LoginResponse(StatusEnum.SUCCESS);
 		return APIProcessTemplateImpl.execute(APIPathConstants.LOGIN,
 				new APIProcessTemplate<LoginResponse>() {
 
@@ -33,7 +35,10 @@ public class LoginServiceImpl implements LoginService {
 
 					@Override
 					public LoginResponse composeFailResultInfo(Exception e) {
-						return null;
+						InvalidParamException invalidParamException = (InvalidParamException) e;
+						loginResponse.setStatusEnum(invalidParamException.getStatusEnum());
+						loginResponse.setMessage(invalidParamException.getMessage());
+						return loginResponse;
 					}
 				});
     }
