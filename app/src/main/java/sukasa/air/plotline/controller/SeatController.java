@@ -41,7 +41,7 @@ public class SeatController {
 		return MapperUtil.convertObject2Map(reservationResponse);
 	}
 
-	@GetMapping(value = APIPathConstants.RESET, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+	@GetMapping(value = APIPathConstants.RESET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public Map<String, Object> resetSeatController() {
 
 		ResetResponse resetResponse = seatModificationService.resetSeat();
