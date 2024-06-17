@@ -4,6 +4,7 @@ import lombok.Getter;
 
 @Getter
 public enum StatusEnum {
+	RESET_UNSUCCESSFUL("-01", "RESET_UNSUCCESSFUL"),
 	RESET_SUCCESSFUL("00", "RESET_SUCCESSFUL"),
 	SUCCESS("01", "SUCCESS"),
 	SEAT_RESERVED("10", "SEAT_RESERVED"),

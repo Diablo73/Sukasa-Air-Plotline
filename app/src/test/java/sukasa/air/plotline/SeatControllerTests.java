@@ -64,7 +64,7 @@ public class SeatControllerTests extends AbstractTestNGSpringContextTests {
 
 		ReservationResponse expectedReservationResponse = new ReservationResponse(StatusEnum.SEAT_RESERVED);
 		Mockito.when(seatModificationService.reserveSeat(Mockito.any(ReservationRequest.class))).thenReturn(expectedReservationResponse);
-		RequestBuilder request = MockMvcRequestBuilders.post("/seat/reserve").content(MapperUtil.convertObject2JsonString(TestUtil.getSeatModificationServiceRequestBody()))
+		RequestBuilder request = MockMvcRequestBuilders.post("/seat/reserve").content(MapperUtil.convertObject2JsonString(TestUtil.getSeatModificationServiceRequestBody(1)))
 				.contentType(MediaType.APPLICATION_JSON)
 				.accept(MediaType.APPLICATION_JSON);
 		mockMvc.perform(request)

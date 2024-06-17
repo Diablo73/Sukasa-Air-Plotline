@@ -86,7 +86,10 @@ public class SeatModificationServiceImpl implements SeatModificationService {
 
 					@Override
 					public ResetResponse composeFailResultInfo(Exception e) {
-						return null;
+						InvalidParamException invalidParamException = (InvalidParamException) e;
+						resetResponse.setStatusEnum(invalidParamException.getStatusEnum());
+						resetResponse.setMessage(invalidParamException.getMessage());
+						return resetResponse;
 					}
 				});
 	}
