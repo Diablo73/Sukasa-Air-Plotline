@@ -17,7 +17,7 @@ import sukasa.air.plotline.template.APIProcessTemplateImpl;
 import sukasa.air.plotline.utils.AssertUtil;
 
 @Service
-public class SeatModificationImpl implements SeatModificationService {
+public class SeatModificationServiceImpl implements SeatModificationService {
 
 	@Autowired
 	private MongoTemplate mongoTemplate;
