@@ -5,7 +5,6 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 import sukasa.air.plotline.enums.StatusEnum;
@@ -16,7 +15,6 @@ import sukasa.air.plotline.service.impls.LoginServiceImpl;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @RunWith(SpringRunner.class)
-@Configuration(value = "application-test.yml")
 @ContextConfiguration(classes = SukasaAirPlotlineApplication.class)
 public class LoginServiceTests {
 
