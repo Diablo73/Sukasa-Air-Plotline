@@ -2,6 +2,7 @@ package sukasa.air.plotline.service.impls;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DuplicateKeyException;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.stereotype.Service;
 import sukasa.air.plotline.constants.APIPathConstants;
@@ -53,7 +54,11 @@ public class SeatModificationServiceImpl implements SeatModificationService {
 
 						log.info("BOOKING initiated for : " + MapperUtil.convertObject2JsonString(reservationDoc));
 						if (reservationRepository.findById(reservationDoc.getSeatNumber()).isEmpty()) {
-							reservationRepository.insert(reservationDoc);
+							try {
+								reservationRepository.insert(reservationDoc);
+							} catch (DuplicateKeyException e) {
+								reservationResponse.setStatusEnum(StatusEnum.SEAT_UNAVAILABLE);
+							}
 						} else {
 							reservationResponse.setStatusEnum(StatusEnum.SEAT_UNAVAILABLE);
 						}
