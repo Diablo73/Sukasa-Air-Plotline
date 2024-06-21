@@ -1,9 +1,11 @@
 package sukasa.air.plotline.models.responses;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import sukasa.air.plotline.enums.StatusEnum;
 
 @Data
+@NoArgsConstructor
 public class StatusResponse {
 
 	private String statusCode;

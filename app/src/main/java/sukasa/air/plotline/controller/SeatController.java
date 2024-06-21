@@ -7,7 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import sukasa.air.plotline.constants.APIPathConstants;
 import sukasa.air.plotline.models.requests.ReservationRequest;
-import sukasa.air.plotline.models.requests.SeatStatusRequest;
+import sukasa.air.plotline.models.responses.FetchAllResponse;
 import sukasa.air.plotline.models.responses.ReservationResponse;
 import sukasa.air.plotline.models.responses.ResetResponse;
 import sukasa.air.plotline.models.responses.SeatStatusResponse;
@@ -38,11 +38,10 @@ public class SeatController {
 				HttpStatus.OK);
 	}
 
-	@PostMapping(value = APIPathConstants.STATUS, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-	public Map<String, Object> seatStatusController(@RequestBody Map<String, Object> requestMap) {
+	@GetMapping(value = APIPathConstants.STATUS, produces = MediaType.APPLICATION_JSON_VALUE)
+	public Map<String, Object> seatStatusController(@PathVariable int seatNumber) {
 
-		SeatStatusRequest seatStatusRequest = (SeatStatusRequest) MapperUtil.convertMap2Object(requestMap, SeatStatusRequest.class);
-		SeatStatusResponse seatStatusResponse = seatQueryService.seatStatus(seatStatusRequest);
+		SeatStatusResponse seatStatusResponse = seatQueryService.seatStatus(seatNumber);
 
 		return MapperUtil.convertObject2Map(seatStatusResponse);
 	}
@@ -54,6 +53,14 @@ public class SeatController {
 		ReservationResponse reservationResponse = seatModificationService.reserveSeat(reservationRequest);
 
 		return MapperUtil.convertObject2Map(reservationResponse);
+	}
+
+	@GetMapping(value = APIPathConstants.FETCH_ALL, produces = MediaType.APPLICATION_JSON_VALUE)
+	public Map<String, Object> fetchAllController() {
+
+		FetchAllResponse fetchAllResponse = seatQueryService.fetchAll();
+
+		return MapperUtil.convertObject2Map(fetchAllResponse);
 	}
 
 	@GetMapping(value = APIPathConstants.RESET, produces = MediaType.APPLICATION_JSON_VALUE)
