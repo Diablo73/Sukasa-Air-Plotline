@@ -23,16 +23,7 @@ public class JwtTokenFilter extends BaseFilter {
 			String authorizationHeader = request.getHeader("Authorization");
 			if (authorizationHeader != null && authorizationHeader.startsWith("Bearer ")) {
 				String token = authorizationHeader.substring(7);
-				if (JwtTokenUtil.isTokenExpired(token)) {
-					response.setStatus(HttpStatus.UNAUTHORIZED.value());
-					response.getWriter().write("Invalid or expired token");
-					response.getWriter().flush();
-					return;
-				}
-				if (isAdminCheckFailed(requestURI, token)) {
-					response.setStatus(HttpStatus.UNAUTHORIZED.value());
-					response.getWriter().write("Admin access token required");
-					response.getWriter().flush();
+				if (isNotValidToken(response, requestURI, token)) {
 					return;
 				}
 			} else {
@@ -45,5 +36,21 @@ public class JwtTokenFilter extends BaseFilter {
 			log.info("Bypass JWT auth : " + requestURI);
 		}
 		filterChain.doFilter(request, response);
+	}
+
+	private boolean isNotValidToken(HttpServletResponse response, String requestURI, String token) throws IOException {
+		if (JwtTokenUtil.isTokenExpired(token)) {
+			response.setStatus(HttpStatus.UNAUTHORIZED.value());
+			response.getWriter().write("Invalid or expired token");
+			response.getWriter().flush();
+			return true;
+		}
+		if (isAdminCheckFailed(requestURI, token)) {
+			response.setStatus(HttpStatus.UNAUTHORIZED.value());
+			response.getWriter().write("Admin access token required");
+			response.getWriter().flush();
+			return true;
+		}
+		return false;
 	}
 }
