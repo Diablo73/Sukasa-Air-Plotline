@@ -7,9 +7,12 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import sukasa.air.plotline.constants.APIPathConstants;
 import sukasa.air.plotline.models.requests.ReservationRequest;
+import sukasa.air.plotline.models.requests.SeatStatusRequest;
 import sukasa.air.plotline.models.responses.ReservationResponse;
 import sukasa.air.plotline.models.responses.ResetResponse;
+import sukasa.air.plotline.models.responses.SeatStatusResponse;
 import sukasa.air.plotline.service.SeatModificationService;
+import sukasa.air.plotline.service.SeatQueryService;
 import sukasa.air.plotline.utils.MapperUtil;
 
 import java.util.Date;
@@ -18,6 +21,9 @@ import java.util.Map;
 @RestController
 @RequestMapping("/seat")
 public class SeatController {
+
+	@Autowired
+	private SeatQueryService seatQueryService;
 
 	@Autowired
 	private SeatModificationService seatModificationService;
@@ -30,6 +36,15 @@ public class SeatController {
 						"<br>" +
 						"Started Successfully at Time : " + date,
 				HttpStatus.OK);
+	}
+
+	@PostMapping(value = APIPathConstants.STATUS, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+	public Map<String, Object> seatStatusController(@RequestBody Map<String, Object> requestMap) {
+
+		SeatStatusRequest seatStatusRequest = (SeatStatusRequest) MapperUtil.convertMap2Object(requestMap, SeatStatusRequest.class);
+		SeatStatusResponse seatStatusResponse = seatQueryService.seatStatus(seatStatusRequest);
+
+		return MapperUtil.convertObject2Map(seatStatusResponse);
 	}
 
 	@PostMapping(value = APIPathConstants.RESERVE, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
