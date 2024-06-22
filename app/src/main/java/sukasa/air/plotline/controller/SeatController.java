@@ -19,7 +19,7 @@ import java.util.Date;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/seat")
+@RequestMapping("/api/v1/seat")
 public class SeatController {
 
 	@Autowired
@@ -28,7 +28,7 @@ public class SeatController {
 	@Autowired
 	private SeatModificationService seatModificationService;
 
-	@GetMapping({APIPathConstants.BLANK})
+	@GetMapping({APIPathConstants.DEFAULT})
 	public ResponseEntity<String> getDefaultMessage() {
 		Date date = new Date();
 		return new ResponseEntity<String>(

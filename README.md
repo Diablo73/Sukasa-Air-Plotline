@@ -33,7 +33,7 @@
 #### HTTP Method    -    `GET`
 #### Description
 Returns a welcome message with the server start time.
-#### URL    -    `/`
+#### URL    -    `/api/v1/default`
 #### Request Body - No Body Required
 #### Response Body
 ```html
@@ -44,7 +44,7 @@ Started Successfully at Time : {current_time}
 #### HTTP Method    -    `POST`
 #### Description
 Returns a jwt access token (60 min expiry) for an email
-#### URL    -    `/login`
+#### URL    -    `/api/v1/login`
 #### Request Body Example -
 ```json
 {
@@ -68,7 +68,7 @@ Returns a jwt access token (60 min expiry) for an email
 #### HTTP Method    -    `POST`
 #### Description
 Confirms and saves seat in the plane
-#### URL    -    `/seat/reserve`
+#### URL    -    `/api/v1/seat/reserve`
 #### Authorization    -    Bearer Token (API #2 Login Token)
 #### Request Body Example -
 ```json
@@ -111,7 +111,7 @@ Confirms and saves seat in the plane
 #### HTTP Method    -    `GET`
 #### Description
 Resets **ALL** the seats
-#### URL    -    `/seat/reset`
+#### URL    -    `/api/v1/seat/reset`
 #### Authorization    -    Bearer Token (API #2 Login Token)
 #### Authentication    -    Admin access required
 #### Request Body Example - No Body Required

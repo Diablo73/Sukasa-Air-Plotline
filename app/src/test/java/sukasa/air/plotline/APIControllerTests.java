@@ -49,7 +49,7 @@ public class APIControllerTests {
 
 	@Test
 	public void defaultMessageTest() throws Exception {
-		RequestBuilder request = MockMvcRequestBuilders.get("/");
+		RequestBuilder request = MockMvcRequestBuilders.get("/api/v1/default");
 		mockMvc.perform(request)
 				.andExpect(MockMvcResultMatchers.status().isOk())
 				.andDo(MockMvcResultHandlers.print())
@@ -62,7 +62,7 @@ public class APIControllerTests {
 
 		LoginResponse expectedLoginResponse = TestUtil.getLoginServiceResponseBody(false);
 		Mockito.when(loginService.initiateLogin(Mockito.any(LoginRequest.class))).thenReturn(expectedLoginResponse);
-		RequestBuilder request = MockMvcRequestBuilders.post("/login").content(MapperUtil.convertObject2JsonString(TestUtil.getLoginServiceRequestBody(false)))
+		RequestBuilder request = MockMvcRequestBuilders.post("/api/v1/login").content(MapperUtil.convertObject2JsonString(TestUtil.getLoginServiceRequestBody(false)))
 				.contentType(MediaType.APPLICATION_JSON)
 				.accept(MediaType.APPLICATION_JSON);;
 		mockMvc.perform(request)

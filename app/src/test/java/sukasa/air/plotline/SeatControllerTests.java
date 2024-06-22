@@ -48,7 +48,7 @@ public class SeatControllerTests {
 
 	@Test
 	public void defaultMessageTest() throws Exception {
-		RequestBuilder request = MockMvcRequestBuilders.get("/seat/");
+		RequestBuilder request = MockMvcRequestBuilders.get("/api/v1/seat/default");
 		mockMvc.perform(request)
 				.andExpect(MockMvcResultMatchers.status().isOk())
 				.andDo(MockMvcResultHandlers.print())
@@ -61,7 +61,7 @@ public class SeatControllerTests {
 
 		ReservationResponse expectedReservationResponse = new ReservationResponse(StatusEnum.SEAT_RESERVED);
 		Mockito.when(seatModificationService.reserveSeat(Mockito.any(ReservationRequest.class))).thenReturn(expectedReservationResponse);
-		RequestBuilder request = MockMvcRequestBuilders.post("/seat/reserve").content(MapperUtil.convertObject2JsonString(TestUtil.getSeatModificationServiceRequestBody(1)))
+		RequestBuilder request = MockMvcRequestBuilders.post("/api/v1/seat/reserve").content(MapperUtil.convertObject2JsonString(TestUtil.getSeatModificationServiceRequestBody(1)))
 				.contentType(MediaType.APPLICATION_JSON)
 				.accept(MediaType.APPLICATION_JSON);
 		mockMvc.perform(request)
@@ -76,7 +76,7 @@ public class SeatControllerTests {
 
 		ResetResponse expectedResetResponse = new ResetResponse(StatusEnum.SEAT_RESERVED);
 		Mockito.when(seatModificationService.resetSeat()).thenReturn(expectedResetResponse);
-		RequestBuilder request = MockMvcRequestBuilders.get("/seat/reset");
+		RequestBuilder request = MockMvcRequestBuilders.get("/api/v1/seat/reset");
 		mockMvc.perform(request)
 				.andExpect(MockMvcResultMatchers.status().isOk())
 				.andExpect(MockMvcResultMatchers.jsonPath("$.statusCode", Matchers.is(expectedResetResponse.getStatusCode())))

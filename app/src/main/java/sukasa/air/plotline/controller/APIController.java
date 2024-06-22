@@ -15,13 +15,13 @@ import java.util.Date;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/")
+@RequestMapping("/api/v1")
 public class APIController {
 
 	@Autowired
 	private LoginService loginService;
 
-	@GetMapping({APIPathConstants.BLANK})
+	@GetMapping({APIPathConstants.DEFAULT})
 	public ResponseEntity<String> getDefaultMessage() {
 		Date date = new Date();
 		return new ResponseEntity<String>(
@@ -39,5 +39,4 @@ public class APIController {
 
 		return MapperUtil.convertObject2Map(loginResponse);
 	}
-
 }
