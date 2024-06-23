@@ -10,14 +10,12 @@ import sukasa.air.plotline.utils.JwtTokenUtil;
 public class TestUtil {
 
 	public static LoginRequest getLoginServiceRequestBody(boolean isAdmin) {
-		LoginRequest loginRequest = new LoginRequest();
-		loginRequest.setEmail(isAdmin ? "admin@sukasaair.com" : "asdfg@f5.si");
-		return loginRequest;
+		return new LoginRequest(isAdmin ? "admin@sukasaair.com" : "asdfg@f5.si");
 	}
 
 	public static LoginResponse getLoginServiceResponseBody(boolean isAdmin) {
-		LoginResponse loginResponse = new LoginResponse(StatusEnum.SUCCESS);
-		loginResponse.setToken(JwtTokenUtil.generateToken(isAdmin ? "admin@sukasaair.com" : "asdfg@f5.si"));
+		LoginResponse loginResponse = new LoginResponse(StatusEnum.SUCCESS, isAdmin ? "admin@sukasaair.com" : "asdfg@f5.si");
+		loginResponse.setToken(JwtTokenUtil.generateTokenStatically(isAdmin ? "admin@sukasaair.com" : "asdfg@f5.si"));
 		return loginResponse;
 	}
 

@@ -17,7 +17,7 @@ import sukasa.air.plotline.utils.JwtTokenUtil;
 public class UtilTests {
 
 	private static final String email = "asdfg.f5.si";
-	private static final String jwtToken = JwtTokenUtil.generateToken(email);
+	private static final String jwtToken = JwtTokenUtil.generateTokenStatically(email);
 
 	@Test
 	public void jwtTokenUtilVerifyTokenTest() {

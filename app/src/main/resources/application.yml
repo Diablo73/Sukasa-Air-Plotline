@@ -22,3 +22,6 @@ mongodb:
   uri: ${MONGODB_URI:mongodb+srv://user0001:CU8MZgdHfHzthk7E@cluster0.nwsacep.mongodb.net/}${MONGODB_DATABASE:sukasa_air_reservation}
   database: ${MONGODB_DATABASE:sukasa_air_reservation}
   admin: ${MONGODB_ADMIN_EMAIL:admin@sukasaair.com}
+
+appConfig:
+  jwtTokenExpiryInSeconds: ${JWT_TOKEN_EXPIRY_IN_SECONDS:300}
