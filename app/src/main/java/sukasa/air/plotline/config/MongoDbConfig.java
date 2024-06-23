@@ -1,6 +1,7 @@
 package sukasa.air.plotline.config;
 
 import com.mongodb.client.MongoClients;
+import lombok.Getter;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -16,6 +17,14 @@ public class MongoDbConfig {
 
 	@Value("${mongodb.database}")
 	private String mongoDbDatabase;
+
+	@Getter
+	private static String mongoDbAdmin;
+
+	@Value("${mongodb.admin}")
+	private void setMongoDbAdmin(String mongoDbAdmin) {
+		MongoDbConfig.mongoDbAdmin = mongoDbAdmin;
+	}
 
 
 	@Bean

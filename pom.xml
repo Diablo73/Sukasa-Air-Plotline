@@ -131,6 +131,11 @@
             <artifactId>vaadin-spring-boot-starter</artifactId>
             <version>24.3.12</version>
         </dependency>
+        <dependency>
+            <groupId>io.diablo73.universal</groupId>
+            <artifactId>common-java-utilities</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
     </dependencies>
 
     <build>
