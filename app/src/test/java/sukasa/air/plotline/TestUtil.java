@@ -1,5 +1,6 @@
 package sukasa.air.plotline;
 
+import org.apache.commons.lang3.StringUtils;
 import sukasa.air.plotline.enums.StatusEnum;
 import sukasa.air.plotline.models.mongoDbDocs.ReservationDoc;
 import sukasa.air.plotline.models.requests.LoginRequest;
@@ -10,7 +11,7 @@ import sukasa.air.plotline.utils.JwtTokenUtil;
 public class TestUtil {
 
 	public static LoginRequest getLoginServiceRequestBody(boolean isAdmin) {
-		return new LoginRequest(isAdmin ? "admin@sukasaair.com" : "asdfg@f5.si");
+		return new LoginRequest(isAdmin ? "admin@sukasaair.com" : "asdfg@f5.si", StringUtils.EMPTY);
 	}
 
 	public static LoginResponse getLoginServiceResponseBody(boolean isAdmin) {

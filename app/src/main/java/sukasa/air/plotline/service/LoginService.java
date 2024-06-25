@@ -6,4 +6,6 @@ import sukasa.air.plotline.models.responses.LoginResponse;
 public interface LoginService {
 	
 	LoginResponse initiateLogin(LoginRequest loginRequest);
+
+	LoginResponse initiateRegisterAndLogin(LoginRequest loginRequest);
 }
