@@ -11,9 +11,10 @@ public class BaseVaadinView extends VerticalLayout {
     public BaseVaadinView() {
         RouterLink homeLink = new RouterLink("Home", HomeView.class);
         RouterLink loginLink = new RouterLink("Login", LoginView.class);
+        RouterLink statusLink = new RouterLink("Status", StatusView.class);
         RouterLink fetchAllLink = new RouterLink("FetchAll", FetchAllView.class);
 
-        HorizontalLayout header = new HorizontalLayout(homeLink, loginLink, fetchAllLink);
+        HorizontalLayout header = new HorizontalLayout(homeLink, loginLink, statusLink, fetchAllLink);
         add(header);
     }
 }

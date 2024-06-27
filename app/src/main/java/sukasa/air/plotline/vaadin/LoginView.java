@@ -42,8 +42,8 @@ public class LoginView extends BaseVaadinView {
         loginOverlay.setI18n(loginI18n);
         loginOverlay.setForgotPasswordButtonVisible(false);
         loginOverlay.setOpened(true);
-        loginOverlay.addLoginListener(e -> {
-            LoginResponse loginResponse = login(loginService, e);
+        loginOverlay.addLoginListener(loginEvent -> {
+            LoginResponse loginResponse = login(loginEvent, loginService);
             if (statusCodesForRedirection.contains(loginResponse.getStatusCode())) {
                 UI.getCurrent().navigate("vaa/fetchAll");
                 loginOverlay.setOpened(false);
@@ -52,7 +52,7 @@ public class LoginView extends BaseVaadinView {
         add(loginOverlay);
     }
 
-    private LoginResponse login(LoginService loginService, AbstractLogin.LoginEvent loginEvent) {
+    private LoginResponse login(AbstractLogin.LoginEvent loginEvent, LoginService loginService) {
         String email = loginEvent.getUsername();
         String password = loginEvent.getPassword();
         LoginResponse loginResponse = new LoginResponse(StatusEnum.INVALID_EMAIL, email);
